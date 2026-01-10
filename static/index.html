@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Artifact Generator</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+        padding: 20px;
+        background: #fafafa;
+      }
+
+      button {
+        padding: 8px 14px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 24px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 8px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 16px;
+      }
+
+      .box {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .history {
+        grid-column: 1 / span 2;
+      }
+
+      pre {
+        margin: 0;
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎲 Random Artifact Generator 🎲</h1>
+
+    <button onclick="generateArtifact()">Generate Artifact</button>
+
+    <div class="grid">
+      <div class="box">
+        <h2>📦 Before (+0)</h2>
+        <pre id="before"></pre>
+      </div>
+
+      <div class="box">
+        <h2>⭐ After (+20)</h2>
+        <pre id="after"></pre>
+      </div>
+
+      <div class="box history">
+        <h2>📜 Roll History</h2>
+        <pre id="history"></pre>
+      </div>
+    </div>
+
+    <script>
+      async function generateArtifact() {
+        try {
+          const res = await fetch("/artifact");
+          const data = await res.json();
+
+          document.getElementById("before").textContent = JSON.stringify(
+            data.before,
+            null,
+            2
+          );
+
+          document.getElementById("after").textContent = JSON.stringify(
+            data.after,
+            null,
+            2
+          );
+
+          document.getElementById("history").textContent = JSON.stringify(
+            data.roll_history,
+            null,
+            2
+          );
+        } catch (err) {
+          alert("Failed to generate artifact");
+          console.error(err);
+        }
+      }
+    </script>
+  </body>
+</html>
