@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Genshin";
+  src: url("./assets/zh-cn.ttf") format("truetype");
+}
+
 body {
   margin: 0;
+  font-family: "Genshin";
 }
