@@ -4,6 +4,7 @@ from artifact.constants import (
     SUBSTAT_WEIGHTS,
     SUBSTAT_LIST,
     MAX_UPGRADE_ROLLS,
+    MAIN_STAT_VALUES,
 )
 from artifact.utils import round_value, get_substat_value, weighted_choice
 
@@ -19,6 +20,7 @@ class Roll:
 class Artifact:
     type: str
     main_stat: str
+    main_stat_value: float
     substats: dict[str, float]
     roll_history: list[Roll] = field(default_factory=list)
 
@@ -74,6 +76,8 @@ class Artifact:
         self.add_roll_history(substat_to_upgrade, rounded_substat_value, roll_value)
 
     def roll_to_max(self) -> None:
+        self.main_stat_value = MAIN_STAT_VALUES[self.main_stat]["max"]
+
         for _ in range(MAX_UPGRADE_ROLLS):
             self.roll()
 
@@ -81,7 +85,7 @@ class Artifact:
         lines = [
             "--- Artifact ---",
             f"Artifact Type: {self.type}",
-            f"Main Stat: {self.main_stat}",
+            f"Main Stat: {self.main_stat} ({self.main_stat_value})",
             "Substats:",
         ]
         for substat, value in self.substats.items():

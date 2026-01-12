@@ -1,11 +1,27 @@
 from fastapi import FastAPI
-from artifact import new_random_artifact
+from artifact import (
+    new_random_artifact,
+    MainStat,
+    Substat,
+    RollHistoryItem,
+    ArtifactState,
+    ArtifactResponse,
+)
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 @app.get("/")
 def home():
@@ -16,32 +32,33 @@ def home():
 def generate_artifact():
     artifact = new_random_artifact()
 
-    before = {
-        "type": artifact.type,
-        "main_stat": artifact.main_stat,
-        "substats": artifact.substats.copy(),
-    }
+    before = ArtifactState(
+        type=artifact.type,
+        main_stat=MainStat(name=artifact.main_stat, value=artifact.main_stat_value),
+        substats=[Substat(name=s, value=v) for s, v in artifact.substats.items()],
+        crit_value=artifact.calculate_crit_value(),
+    )
 
     artifact.roll_to_max()
 
-    after = {
-        "type": artifact.type,
-        "main_stat": artifact.main_stat,
-        "substats": artifact.substats,
-        "crit_value": artifact.calculate_crit_value(),
-    }
+    after = ArtifactState(
+        type=artifact.type,
+        main_stat=MainStat(name=artifact.main_stat, value=artifact.main_stat_value),
+        substats=[Substat(name=k, value=v) for k, v in artifact.substats.items()],
+        crit_value=artifact.calculate_crit_value(),
+    )
 
     roll_history = [
-        {
-            "substat": roll.substat,
-            "value": roll.value,
-            "roll_value": roll.roll_value,
-        }
+        RollHistoryItem(
+            substat=roll.substat,
+            value=roll.value,
+            roll_value=roll.roll_value,
+        )
         for roll in artifact.roll_history
     ]
 
-    return {
-        "before": before,
-        "after": after,
-        "roll_history": roll_history,
-    }
+    return ArtifactResponse(
+        before=before,
+        after=after,
+        roll_history=roll_history,
+    )

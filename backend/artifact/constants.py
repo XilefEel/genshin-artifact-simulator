@@ -2,6 +2,31 @@ MAX_UPGRADE_ROLLS = 5
 
 ARTIFACT_TYPES = ["Flower", "Feather", "Sand", "Goblet", "Circlet"]
 
+MAIN_STAT_VALUES = {
+    "HP": {"base": 717, "max": 4780},
+    "ATK": {"base": 47, "max": 311},
+
+    "HP%": {"base": 7, "max": 46.6},
+    "ATK%": {"base": 7, "max": 46.6},
+    "DEF%": {"base": 8.7, "max": 58.3},
+    "EM": {"base": 28, "max": 186},
+    "ER%": {"base": 7.8, "max": 51.8},
+
+    "Pyro DMG%": {"base": 7, "max": 46.6},
+    "Electro DMG%": {"base": 7, "max": 46.6},
+    "Cryo DMG%": {"base": 7, "max": 46.6},
+    "Hydro DMG%": {"base": 7, "max": 46.6},
+    "Dendro DMG%": {"base": 7, "max": 46.6},
+    "Anemo DMG%": {"base": 7, "max": 46.6},
+    "Geo DMG%": {"base": 7, "max": 46.6},
+    "Physical DMG%": {"base": 8.7, "max": 58.3},
+
+    "CRIT Rate%": {"base": 4.7, "max": 31.1},
+    "CRIT DMG%": {"base": 9.3, "max": 62.2},
+
+    "HB%": {"base": 5.4, "max": 35.9},
+}
+
 MAIN_STAT_DISTRIBUTIONS = {
     "Flower": {"HP": 1.0},
     "Feather": {"ATK": 1.0},

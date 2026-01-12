@@ -2,6 +2,7 @@ import random
 from artifact.types import Artifact
 from artifact.constants import (
     ARTIFACT_TYPES,
+    MAIN_STAT_VALUES,
     MAIN_STAT_DISTRIBUTIONS,
     SUBSTAT_WEIGHTS,
     SUBSTAT_LIST,
@@ -46,6 +47,7 @@ def get_random_substats(main_stat: str) -> dict[str, float]:
 def new_random_artifact() -> Artifact:
     artifact_type = get_random_artifact_type()
     main_stat = get_random_main_stat(artifact_type)
+    main_stat_value = MAIN_STAT_VALUES[main_stat]["base"]
     substats = get_random_substats(main_stat)
 
-    return Artifact(artifact_type, main_stat, substats)
+    return Artifact(artifact_type, main_stat, main_stat_value, substats)
