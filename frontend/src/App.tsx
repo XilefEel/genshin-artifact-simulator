@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import BackgroundEffects from "./components/BackgroundEffects";
-import MainMenu from "./components/MainMenu";
-import StatsMenu from "./components/StatsMenu";
+import MainMenu from "./components/main-menu/MainMenu";
+import StatsMenu from "./components/stats-menu/StatsMenu";
 import { generateArtifact } from "./lib/artifact";
 import type { ArtifactResponse, ArtifactState } from "./types/artifact";
 
