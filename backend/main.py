@@ -33,7 +33,7 @@ def generate_artifact():
     artifact = new_random_artifact()
 
     before = ArtifactState(
-        type=artifact.type,
+        type=artifact.artifact_type,
         main_stat=MainStat(name=artifact.main_stat, value=artifact.main_stat_value),
         substats=[Substat(name=s, value=v) for s, v in artifact.substats.items()],
         crit_value=artifact.calculate_crit_value(),
@@ -42,9 +42,12 @@ def generate_artifact():
     artifact.roll_to_max()
 
     after = ArtifactState(
-        type=artifact.type,
+        type=artifact.artifact_type,
         main_stat=MainStat(name=artifact.main_stat, value=artifact.main_stat_value),
-        substats=[Substat(name=k, value=v) for k, v in artifact.substats.items()],
+        substats=[
+            Substat(name=k, value=v, rolls=artifact.substats_upgrade_counter[k])
+            for k, v in artifact.substats.items()
+        ],
         crit_value=artifact.calculate_crit_value(),
     )
 

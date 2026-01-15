@@ -34,7 +34,7 @@ export default function ArtifactStats({
       <div className="mb-2 h-0.5 w-full rounded-full bg-white/20" />
 
       <div className="flex justify-between bg-black/10 p-2 py-3 text-lg">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3.5 pl-1.5">
           <Sparkle size={20} className="text-white/60" />
           <p>{artifactData.main_stat.name}</p>
         </div>
@@ -52,7 +52,15 @@ export default function ArtifactStats({
             )}
           >
             <div className="flex items-center gap-4">
-              <p className="text-white/60">•</p>
+              <p className="w-4 text-center text-white/60">
+                {substat.rolls > 0 ? (
+                  <p className="rounded-full bg-amber-200 text-xs text-yellow-700">
+                    {substat.rolls}
+                  </p>
+                ) : (
+                  "•"
+                )}
+              </p>
               <div>{substat.name}</div>
             </div>
             <p>{substat.value}</p>

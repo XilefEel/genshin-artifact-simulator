@@ -1,4 +1,5 @@
 import random
+from collections import Counter
 from dataclasses import dataclass, field
 from artifact.constants import (
     SUBSTAT_WEIGHTS,
@@ -18,10 +19,12 @@ class Roll:
 
 @dataclass
 class Artifact:
-    type: str
+    artifact_type: str
     main_stat: str
     main_stat_value: float
     substats: dict[str, float]
+
+    substats_upgrade_counter: Counter[str] = field(default_factory=Counter)
     roll_history: list[Roll] = field(default_factory=list)
 
     def calculate_crit_value(self) -> float:
@@ -73,6 +76,8 @@ class Artifact:
             self.substats[substat_to_upgrade] + substat_value, substat_to_upgrade
         )
 
+        self.substats_upgrade_counter[substat_to_upgrade] += 1
+
         self.add_roll_history(substat_to_upgrade, rounded_substat_value, roll_value)
 
     def roll_to_max(self) -> None:
@@ -84,7 +89,7 @@ class Artifact:
     def __str__(self) -> str:
         lines = [
             "--- Artifact ---",
-            f"Artifact Type: {self.type}",
+            f"Artifact Type: {self.artifact_type}",
             f"Main Stat: {self.main_stat} ({self.main_stat_value})",
             "Substats:",
         ]

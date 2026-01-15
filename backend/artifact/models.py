@@ -9,6 +9,7 @@ class MainStat(BaseModel):
 class Substat(BaseModel):
     name: str
     value: float
+    rolls: int = 0
 
 
 class RollHistoryItem(BaseModel):

@@ -6,6 +6,7 @@ export type MainStat = {
 export type Substat = {
   name: string;
   value: number;
+  rolls: number;
 };
 
 export type RollHistoryItem = {
