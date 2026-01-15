@@ -43,6 +43,7 @@ export default function App() {
           artifactData={artifactData}
           showAfter={showAfter}
           handleRollToMax={handleRollToMax}
+          handleNewArtifact={fetchArtifact}
         />
       </div>
     </div>

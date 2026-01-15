@@ -7,10 +7,12 @@ export default function StatsMenu({
   artifactData,
   showAfter,
   handleRollToMax,
+  handleNewArtifact,
 }: {
   artifactData: ArtifactState;
   showAfter: boolean;
   handleRollToMax: () => void;
+  handleNewArtifact: () => void;
 }) {
   const level = showAfter ? 20 : 0;
 
@@ -23,7 +25,7 @@ export default function StatsMenu({
       />
 
       {showAfter ? (
-        <MaxLevelMessage />
+        <MaxLevelMessage handleNewArtifact={handleNewArtifact} />
       ) : (
         <EnhancementControls onEnhance={handleRollToMax} />
       )}
