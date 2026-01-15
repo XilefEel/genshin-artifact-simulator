@@ -17,7 +17,7 @@ export default function StatsMenu({
   const level = showAfter ? 20 : 0;
 
   return (
-    <div className="flex min-h-screen w-200 flex-col justify-between p-10 pt-12 pl-0">
+    <div className="flex min-h-screen w-200 flex-col justify-between p-10 pt-16 pl-0">
       <ArtifactStats
         artifactData={artifactData}
         level={level}

@@ -6,6 +6,7 @@ import Goblet from "../../assets/Goblet.png";
 import Sands from "../../assets/Sands.png";
 import MenuItem from "./MenuItem";
 import ArtifactDisplay from "./ArtifactDisplay";
+import Mora from "../../assets/Mora.png";
 
 const ARTIFACT_DATA = {
   Flower: {
@@ -44,6 +45,10 @@ export default function MainMenu({ artifactType }: { artifactType: string }) {
         <MenuItem Icon={Diamond} label="Details" />
         <MenuItem Icon={Diamond} label="Enhance" isActive />
         <MenuItem Icon={Diamond} label="Reshape" />
+      </div>
+      <div className="absolute top-8 right-24 flex flex-row items-center rounded-full bg-black/30 px-2 py-0.5">
+        <img src={Mora} alt="Mora" className="mr-2 size-4" />
+        <p className="text-sm text-gray-100">123456789</p>
       </div>
       <ArtifactDisplay imageSrc={artifactData.image} altText={artifactType} />
     </div>

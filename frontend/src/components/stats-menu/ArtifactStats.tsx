@@ -58,7 +58,7 @@ export default function ArtifactStats({
                     {substat.rolls}
                   </p>
                 ) : (
-                  "•"
+                  <p>•</p>
                 )}
               </p>
               <div>{substat.name}</div>

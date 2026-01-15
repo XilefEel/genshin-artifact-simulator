@@ -1,4 +1,5 @@
 import { ChevronDown, Plus } from "lucide-react";
+import Mora from "../../assets/Mora.png";
 
 export default function EnhancementControls({
   onEnhance,
@@ -37,10 +38,14 @@ export default function EnhancementControls({
       <div className="h-0.5 w-full rounded-full bg-white/20" />
 
       <div className="flex flex-row items-center justify-between">
-        <p className="text-amber-200">Required 6720 Mora</p>
+        <div className="flex flex-row items-center">
+          <p className="text-white/60">Required</p>
+          <img src={Mora} alt="Mora" className="mx-3 size-5" />
+          <p className="text-gray-100">0</p>
+        </div>
         <button
           onClick={onEnhance}
-          className="w-1/2 cursor-pointer rounded-full bg-orange-100 px-3 py-2 text-gray-700 disabled:opacity-50"
+          className="w-1/2 cursor-pointer rounded-full bg-orange-100 px-3 py-2 text-gray-700 transition-all duration-200 hover:bg-orange-100/80 active:scale-95 disabled:opacity-50"
         >
           Enhance to Max
         </button>

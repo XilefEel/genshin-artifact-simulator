@@ -13,7 +13,7 @@ export default function MaxLevelMessage({
       <div className="flex flex-row justify-end">
         <button
           onClick={handleNewArtifact}
-          className="w-1/2 cursor-pointer rounded-full bg-orange-100 px-5 py-2 text-sm text-gray-700 disabled:opacity-50"
+          className="ransition-all w-1/2 cursor-pointer rounded-full bg-orange-100 px-5 py-2 text-sm text-gray-700 duration-200 hover:bg-orange-100/80 active:scale-95 disabled:opacity-50"
         >
           Roll new artifact
         </button>
